@@ -12,19 +12,19 @@ npm install
 
 Copy .env.example, rename it to .env and fill the environment variables.
 
-# development
+development
 
 ```bash
 npm run start
 ```
 
-# watch mode
+watch mode
 
 ```bash
 npm run start:dev
 ```
 
-# production mode
+production mode
 
 ```bash
 npm run start:prod
