@@ -8,6 +8,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Pizza example')
     .setVersion('1.0')
+    .addServer('https://pizza-nest.onrender.com')
     .addServer('http://localhost:3000')
     .build();
   const document = SwaggerModule.createDocument(app, config);
