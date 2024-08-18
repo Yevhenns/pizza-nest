@@ -5,20 +5,27 @@
 ## Installation
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Running the app
 
 Copy .env.example, rename it to .env and fill the environment variables.
-```bash
+
 # development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```bash
+npm run start
 ```
 
+# watch mode
+
+```bash
+npm run start:dev
+```
+
+# production mode
+
+```bash
+npm run start:prod
+```
