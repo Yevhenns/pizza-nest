@@ -18,17 +18,21 @@ export class createEmailBodyDto {
     number: string;
   };
   @ApiProperty({
-    example: {
-      optionsTitles: ['Сирний бортик'],
-      quantity: 2,
-      title: 'Карбонара',
-    },
+    example: [
+      { title: 'Нагетси', quantity: 1, optionsTitles: [] },
+      { title: 'З лососем', quantity: 2, optionsTitles: [] },
+      {
+        title: 'Барбекю',
+        quantity: 1,
+        optionsTitles: ["Подвійне м'ясо", 'Бортик з крем сиром'],
+      },
+    ],
   })
   order: {
     optionsTitles: string[];
     quantity: number;
     title: string;
-  };
-  @ApiProperty({ example: 250 })
+  }[];
+  @ApiProperty({ example: 775 })
   orderSum: number;
 }
