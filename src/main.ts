@@ -7,7 +7,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'https://nostrra-pizzza.vercel.app',
-    allowedHeaders: 'Access-Control-Allow-Origin',
+    allowedHeaders: 'Content-Type, Authorization',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
