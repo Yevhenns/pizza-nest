@@ -1,8 +1,8 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { SendEmailService } from './send-email.service';
+import { SendEmailService } from './send_email.service';
 import { createEmailBodyDto } from './dto/createEmailBody.dto';
 
-@Controller('/api/send-email')
+@Controller('/api/send_email')
 export class SendEmailController {
   constructor(private readonly sendEmailService: SendEmailService) {}
 

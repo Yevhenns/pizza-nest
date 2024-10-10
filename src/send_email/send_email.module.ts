@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SendEmailController } from './send-email.controller';
-import { SendEmailService } from './send-email.service';
+import { SendEmailController } from './send_email.controller';
+import { SendEmailService } from './send_email.service';
 
 @Module({
   controllers: [SendEmailController],

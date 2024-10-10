@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HealthModule } from 'src/health/health.module';
 import { ProductModule } from '../product/product.module';
-import { SendEmailModule } from 'src/send-email/send-email.module';
+import { SendEmailModule } from 'src/send_email/send_email.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
