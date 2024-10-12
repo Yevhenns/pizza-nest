@@ -10,6 +10,6 @@ export class UserOrdersService {
   ) {}
 
   async findUserOrdersAll(userId: string): Promise<UserOrder[]> {
-    return this.userProductModel.find({ userId }).exec();
+    return this.userProductModel.find({ 'customerInfo.userId': userId }).exec();
   }
 }
