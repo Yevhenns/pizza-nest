@@ -5,7 +5,11 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:3000', 'https://nostrra-pizzza.vercel.app/'],
+    methods: ['GET', 'POST'],
+    credentials: true,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Pizza example')
