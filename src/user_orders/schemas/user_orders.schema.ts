@@ -42,7 +42,7 @@ export class UserOrder {
   customerInfo: CustomerInfo;
 
   @Prop({ required: true })
-  order: Ordered;
+  order: Ordered[];
 
   @Prop({ required: true })
   orderSum: number;
