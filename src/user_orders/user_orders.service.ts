@@ -9,7 +9,7 @@ export class UserOrdersService {
     @InjectModel(UserOrder.name) private userProductModel: Model<UserOrder>,
   ) {}
 
-  async findUserOrdersAll(): Promise<UserOrder[]> {
-    return this.userProductModel.find().exec();
+  async findUserOrdersAll(userId: string): Promise<UserOrder[]> {
+    return this.userProductModel.find({ userId }).exec();
   }
 }
