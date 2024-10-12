@@ -26,10 +26,10 @@ export class CustomerInfo {
 
 @Schema()
 export class Ordered {
-  @Prop({ required: false })
+  @Prop({ required: true })
   title: string;
 
-  @Prop({ required: false })
+  @Prop({ required: true })
   quantity: number;
 
   @Prop({ required: false })
