@@ -12,7 +12,7 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Pizza example')
+    .setTitle('Pizza API Documentation')
     .setVersion('1.0')
     .addServer('https://pizza-nest.onrender.com')
     .addServer('http://localhost:3000')

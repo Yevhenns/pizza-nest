@@ -6,6 +6,7 @@ import { ProductModule } from '../product/product.module';
 import { SendEmailModule } from 'src/send_email/send_email.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { UserOrdersModule } from 'src/user_orders/user_orders.module';
+import { SupplementsModule } from 'src/supplements/supplements.module';
 
 @Module({
   imports: [
@@ -25,8 +26,9 @@ import { UserOrdersModule } from 'src/user_orders/user_orders.module';
     }),
     HealthModule,
     ProductModule,
-    SendEmailModule,
+    SupplementsModule,
     UserOrdersModule,
+    SendEmailModule,
   ],
 })
 export class AppModule {}
