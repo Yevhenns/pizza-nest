@@ -6,7 +6,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 export class SupplementsController {
   constructor(private readonly supplementService: SupplementsService) {}
 
-  @ApiTags('Products')
+  @ApiTags('Supplements')
   @ApiOperation({
     summary: 'Get a list of all supplements',
     description:
