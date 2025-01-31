@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './schemas/product.schema';
 import { Model } from 'mongoose';
+
 @Injectable()
 export class ProductService {
   constructor(
@@ -19,7 +20,9 @@ export class ProductService {
       throw new Error('Unauthorized: Only admin can delete products');
     }
 
-    const deletedProduct = await this.productModel.findByIdAndDelete(productId);
+    const deletedProduct = await this.productModel
+      .findByIdAndDelete(productId)
+      .exec();
 
     if (!deletedProduct) {
       throw new Error('Product not found');
