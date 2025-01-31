@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -25,7 +25,7 @@ export class ProductController {
   })
   @Delete(':productId')
   deleteById(
-    @Param('productId') productId: string,
+    @Query('productId') productId: string,
     @Query('userId') userId: string,
   ) {
     return this.productService.deleteById(productId, userId);
