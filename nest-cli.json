@@ -6,9 +6,10 @@
     "deleteOutDir": true,
     "assets": [
       {
-        "include": "send-email/views/**/*",
-        "outDir": "dist"
+        "include": "send_email/views/**/*",
+        "outDir": "dist/"
       }
-    ]
+    ],
+    "watchAssets": true
   }
 }
