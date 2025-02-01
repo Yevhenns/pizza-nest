@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
 
 export enum ProductCategory {
   PIZZA = 'Піца',
@@ -7,7 +6,7 @@ export enum ProductCategory {
   DRINKS = 'Напої',
 }
 
-class ProductDto {
+export class CreateProductDto {
   @ApiProperty({ example: '5 сирів' })
   title: string;
 
@@ -35,12 +34,6 @@ class ProductDto {
   @ApiProperty({ example: 380 })
   promPrice: number;
 
-  @ApiProperty({ example: false, required: false })
+  @ApiProperty({ example: false })
   vegan: boolean;
-}
-
-export class CreateProductDto {
-  @ApiProperty({ type: ProductDto })
-  @Type(() => ProductDto)
-  product: ProductDto;
 }

@@ -26,7 +26,7 @@ export class SupplementsService {
       throw new Error('Unauthorized: Only admin can create supplements');
     }
 
-    const createdSupplement = new this.supplementModel(dto.supplement);
+    const createdSupplement = new this.supplementModel(dto);
     return createdSupplement.save();
   }
 

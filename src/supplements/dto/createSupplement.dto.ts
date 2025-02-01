@@ -1,12 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
 
 export enum Supplementategory {
   PIZZA = 'Піца',
   APPETIZERS = 'Закуски',
 }
 
-class SupplementDto {
+export class CreateSupplementDto {
   @ApiProperty({ example: "потрійне м'ясо" })
   title: string;
 
@@ -18,10 +17,4 @@ class SupplementDto {
 
   @ApiProperty({ example: 'Закуски', enum: Supplementategory })
   for_category: Supplementategory;
-}
-
-export class CreateSupplementDto {
-  @ApiProperty({ type: SupplementDto })
-  @Type(() => SupplementDto)
-  supplement: SupplementDto;
 }

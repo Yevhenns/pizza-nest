@@ -23,7 +23,7 @@ export class ProductService {
       throw new Error('Unauthorized: Only admin can create products');
     }
 
-    const createdProduct = new this.productModel(dto.product);
+    const createdProduct = new this.productModel(dto);
     return createdProduct.save();
   }
 
