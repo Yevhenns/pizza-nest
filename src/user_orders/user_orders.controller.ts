@@ -2,11 +2,11 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { UserOrdersService } from './user_orders.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('api/user_orders')
+@Controller('user_orders')
 export class UserOrdersController {
   constructor(private readonly productService: UserOrdersService) {}
 
-  @ApiTags('User')
+  @ApiTags('Users')
   @ApiOperation({
     summary: 'Get list of orders for a specific user',
     description:

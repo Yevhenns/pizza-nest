@@ -14,8 +14,12 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Pizza API Documentation')
     .setVersion('1.0')
-    .addServer('https://pizza-nest.onrender.com')
-    .addServer('http://localhost:3000')
+    .setDescription('https://pizza-nest.onrender.com/api')
+    .addServer(
+      'https://pizza-nest.onrender.com/api',
+      'Production server (on Render)',
+    )
+    .addServer('http://localhost:3000', 'Development server (localhost)')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

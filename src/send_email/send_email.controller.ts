@@ -3,7 +3,7 @@ import { SendEmailService } from './send_email.service';
 import { CreateEmailBodyDto } from './dto/createEmailBody.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('/api/send_email')
+@Controller('send_email')
 export class SendEmailController {
   constructor(private readonly sendEmailService: SendEmailService) {}
 
