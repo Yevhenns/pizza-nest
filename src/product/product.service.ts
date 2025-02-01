@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './schemas/product.schema';
 import { Model } from 'mongoose';
+import { CreateProductDto } from './dto/createProduct.dto';
 
 @Injectable()
 export class ProductService {
@@ -9,10 +10,18 @@ export class ProductService {
     @InjectModel(Product.name) private productModel: Model<Product>,
   ) {}
 
+  // findAll
   async findAll(): Promise<Product[]> {
     return this.productModel.find().exec();
   }
 
+  // createProduct
+  async createProduct(dto: CreateProductDto): Promise<Product> {
+    const createdProduct = new this.productModel(dto.product);
+    return createdProduct.save();
+  }
+
+  // deleteById
   async deleteById(productId: string, userId: string) {
     const adminId = process.env.ADMIN_ID;
 
