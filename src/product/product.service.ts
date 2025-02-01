@@ -16,7 +16,13 @@ export class ProductService {
   }
 
   // createProduct
-  async createProduct(dto: CreateProductDto): Promise<Product> {
+  async createProduct(dto: CreateProductDto, userId: string): Promise<Product> {
+    const adminId = process.env.ADMIN_ID;
+
+    if (adminId !== userId) {
+      throw new Error('Unauthorized: Only admin can delete products');
+    }
+
     const createdProduct = new this.productModel(dto.product);
     return createdProduct.save();
   }

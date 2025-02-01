@@ -32,8 +32,11 @@ export class ProductController {
     description: 'This endpoint creates a new product.',
   })
   @Post()
-  async createProduct(@Body() dto: CreateProductDto) {
-    await this.productService.createProduct(dto);
+  async createProduct(
+    @Body() dto: CreateProductDto,
+    @Query('userId') userId: string,
+  ) {
+    await this.productService.createProduct(dto, userId);
     return { success: true };
   }
 
