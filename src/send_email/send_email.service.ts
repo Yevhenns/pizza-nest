@@ -3,7 +3,7 @@ import * as handlebars from 'handlebars';
 import * as nodemailer from 'nodemailer';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { createEmailBodyDto } from './dto/createEmailBody.dto';
+import { CreateEmailBodyDto } from './dto/CreateEmailBody.dto';
 
 @Injectable()
 export class SendEmailService {
@@ -20,7 +20,7 @@ export class SendEmailService {
     }
   }
 
-  async sendEmail(dto: createEmailBodyDto) {
+  async sendEmail(dto: CreateEmailBodyDto) {
     const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
 

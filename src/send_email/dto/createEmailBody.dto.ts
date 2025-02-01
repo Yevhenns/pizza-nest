@@ -1,22 +1,32 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 
-export class createEmailBodyDto {
-  @ApiProperty({
-    example: {
-      address: 'Лесі Українки 12/32',
-      comment: 'На 18:30',
-      delivery: true,
-      name: 'Андрій',
-      number: '0938882211',
-    },
-  })
-  customerInfo: {
-    address: string;
-    comment: string;
-    delivery: boolean;
-    name: string;
-    number: string;
-  };
+class CustomerInfoDto {
+  @ApiProperty({ example: 'Лесі Українки 12/32', required: false })
+  address: string;
+
+  @ApiProperty({ example: 'На 18:30', required: false })
+  comment: string;
+
+  @ApiProperty({ example: 'Андрій' })
+  name: string;
+
+  @ApiProperty({ example: '0938882211' })
+  number: string;
+}
+
+class OrderItemDto {
+  @ApiProperty({ example: 'Нагетси' })
+  title: string;
+
+  @ApiProperty({ example: 1 })
+  quantity: number;
+
+  @ApiProperty({ example: [] })
+  optionsTitles: string[] | [];
+}
+
+export class OrderDto {
   @ApiProperty({
     example: [
       { title: 'Нагетси', quantity: 1, optionsTitles: [] },
@@ -27,12 +37,26 @@ export class createEmailBodyDto {
         optionsTitles: ["Подвійне м'ясо", 'Бортик з крем сиром'],
       },
     ],
+    type: [OrderItemDto],
   })
-  order: {
-    optionsTitles: string[];
-    quantity: number;
-    title: string;
-  }[];
+  order: OrderItemDto[];
+}
+
+class OrderSumDto {
   @ApiProperty({ example: 775 })
   orderSum: number;
+}
+
+export class CreateEmailBodyDto {
+  @ApiProperty({ type: CustomerInfoDto })
+  @Type(() => CustomerInfoDto)
+  customerInfo: CustomerInfoDto;
+
+  @ApiProperty({ type: OrderDto })
+  @Type(() => OrderDto)
+  order: OrderDto;
+
+  @ApiProperty({ type: OrderSumDto })
+  @Type(() => OrderSumDto)
+  orderSum: OrderSumDto;
 }
