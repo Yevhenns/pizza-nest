@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { SendEmailService } from './send_email.service';
 import { CreateEmailBodyDto } from './dto/createEmailBody.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -14,7 +14,6 @@ export class SendEmailController {
       'This endpoint sends an email to the store owner via Gmail. It includes the order information in the email body.',
   })
   @Post()
-  @HttpCode(HttpStatus.CREATED)
   async sendEmail(@Body() dto: CreateEmailBodyDto) {
     await this.sendEmailService.sendEmail(dto);
     return { success: true };
