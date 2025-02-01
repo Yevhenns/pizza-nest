@@ -11,15 +11,17 @@ async function bootstrap() {
     credentials: true,
   });
 
+  app.setGlobalPrefix('api/v1');
+
   const config = new DocumentBuilder()
     .setTitle('Pizza API Documentation')
     .setVersion('1.0')
-    .setDescription('https://pizza-nest.onrender.com/api')
+    .setDescription('https://pizza-nest.onrender.com/api/v1')
     .addServer(
-      'https://pizza-nest.onrender.com/api',
+      'https://pizza-nest.onrender.com/api/v1',
       'Production server (on Render)',
     )
-    .addServer('http://localhost:3000', 'Development server (localhost)')
+    .addServer('http://localhost:3000/api/v1', 'Development server (localhost)')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
