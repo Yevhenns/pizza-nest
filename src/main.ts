@@ -23,7 +23,11 @@ async function bootstrap() {
     )
     .addServer('http://localhost:3000/api/v1', 'Development server (localhost)')
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+
+  const document = SwaggerModule.createDocument(app, config, {
+    ignoreGlobalPrefix: true,
+  });
+
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
