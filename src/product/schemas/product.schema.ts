@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { ProductCategory } from '../dto/createProduct.dto';
 
 export type ProductDocument = HydratedDocument<Product>;
 
@@ -21,7 +22,7 @@ export class Product {
   photo: string;
 
   @Prop({ required: true })
-  category: string;
+  category: ProductCategory;
 
   @Prop({ required: true })
   promotion: boolean;
@@ -29,7 +30,7 @@ export class Product {
   @Prop({ required: true })
   promPrice: number;
 
-  @Prop()
+  @Prop({ required: true })
   vegan: boolean;
 }
 

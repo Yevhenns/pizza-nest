@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
-export enum Category {
+export enum ProductCategory {
   PIZZA = 'Піца',
   APPETIZERS = 'Закуски',
   DRINKS = 'Напої',
@@ -26,8 +26,8 @@ class ProductDto {
   })
   photo: string;
 
-  @ApiProperty({ example: 'Піца', enum: Category })
-  category: Category;
+  @ApiProperty({ example: 'Піца', enum: ProductCategory })
+  category: ProductCategory;
 
   @ApiProperty({ example: false })
   promotion: boolean;

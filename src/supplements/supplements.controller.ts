@@ -1,6 +1,15 @@
-import { Controller, Delete, Get, Param, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { SupplementsService } from './supplements.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { CreateSupplementDto } from './dto/createSupplement.dto';
 
 @Controller('supplements')
 export class SupplementsController {
@@ -15,6 +24,20 @@ export class SupplementsController {
   @Get()
   findAll() {
     return this.supplementService.findAll();
+  }
+
+  @ApiTags('Supplements')
+  @ApiOperation({
+    summary: 'Create a new supplement',
+    description: 'This endpoint creates a new supplement.',
+  })
+  @Post()
+  async createSupplement(
+    @Body() dto: CreateSupplementDto,
+    @Query('userId') userId: string,
+  ) {
+    await this.supplementService.createSupplement(dto, userId);
+    return { success: true };
   }
 
   @ApiTags('Supplements')
