@@ -20,7 +20,7 @@ export class ProductService {
     const adminId = process.env.ADMIN_ID;
 
     if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can delete products');
+      throw new Error('Unauthorized: Only admin can create products');
     }
 
     const createdProduct = new this.productModel(dto.product);
