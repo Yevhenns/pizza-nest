@@ -42,21 +42,25 @@ export class OrderDto {
   order: OrderItemDto[];
 }
 
-class OrderSumDto {
-  @ApiProperty({ example: 775 })
-  orderSum: number;
-}
-
 export class CreateEmailBodyDto {
   @ApiProperty({ type: CustomerInfoDto })
   @Type(() => CustomerInfoDto)
   customerInfo: CustomerInfoDto;
 
-  @ApiProperty({ type: OrderDto })
-  @Type(() => OrderDto)
-  order: OrderDto;
+  @ApiProperty({
+    example: [
+      { title: 'Нагетси', quantity: 1, optionsTitles: [] },
+      { title: 'З лососем', quantity: 2, optionsTitles: [] },
+      {
+        title: 'Барбекю',
+        quantity: 1,
+        optionsTitles: ["Подвійне м'ясо", 'Бортик з крем сиром'],
+      },
+    ],
+    type: [OrderItemDto],
+  })
+  order: OrderItemDto[];
 
-  @ApiProperty({ type: OrderSumDto })
-  @Type(() => OrderSumDto)
-  orderSum: OrderSumDto;
+  @ApiProperty({ example: 775 })
+  orderSum: number;
 }

@@ -40,8 +40,8 @@ export class SendEmailService {
       number,
       address,
       comment,
-      orderSum: orderSum.orderSum,
-      order: order.order,
+      orderSum,
+      order,
     });
 
     const transport = nodemailer.createTransport({

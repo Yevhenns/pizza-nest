@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { Supplementategory } from '../dto/createSupplement.dto';
+import { SupplementForCategory } from 'src/@types/types';
 
 export type SupplementDocument = HydratedDocument<Supplement>;
 
@@ -16,7 +16,7 @@ export class Supplement {
   vegan: boolean;
 
   @Prop({ required: true })
-  for_category: Supplementategory;
+  for_category: SupplementForCategory;
 }
 
 export const SupplementSchema = SchemaFactory.createForClass(Supplement);

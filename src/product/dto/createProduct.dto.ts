@@ -1,10 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-
-export enum ProductCategory {
-  PIZZA = 'Піца',
-  APPETIZERS = 'Закуски',
-  DRINKS = 'Напої',
-}
+import { ProductCategory } from 'src/@types/types';
 
 export class CreateProductDto {
   @ApiProperty({ example: '5 сирів' })

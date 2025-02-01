@@ -1,9 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-
-export enum Supplementategory {
-  PIZZA = 'Піца',
-  APPETIZERS = 'Закуски',
-}
+import { SupplementForCategory } from 'src/@types/types';
 
 export class CreateSupplementDto {
   @ApiProperty({ example: "потрійне м'ясо" })
@@ -15,6 +11,6 @@ export class CreateSupplementDto {
   @ApiProperty({ example: false })
   vegan: boolean;
 
-  @ApiProperty({ example: 'Закуски', enum: Supplementategory })
-  for_category: Supplementategory;
+  @ApiProperty({ example: 'Закуски', enum: SupplementForCategory })
+  for_category: SupplementForCategory;
 }
