@@ -3,7 +3,7 @@ import * as handlebars from 'handlebars';
 import * as nodemailer from 'nodemailer';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { CreateEmailBodyDto } from './dto/CreateEmailBody.dto';
+import { CreateEmailBodyDto } from './dto/createEmailBody.dto';
 
 @Injectable()
 export class SendEmailService {
