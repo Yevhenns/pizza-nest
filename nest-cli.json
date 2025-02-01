@@ -8,10 +8,6 @@
       {
         "include": "send_email/views/**/*",
         "outDir": "dist/"
-      },
-      {
-        "include": "@types/**/*",
-        "outDir": "dist/"
       }
     ],
     "watchAssets": true

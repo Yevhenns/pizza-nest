@@ -1,5 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { SupplementForCategory } from 'src/@types/types';
+
+export enum SupplementForCategory {
+  PIZZA = 'Піца',
+  APPETIZERS = 'Закуски',
+}
 
 export class CreateSupplementDto {
   @ApiProperty({ example: "потрійне м'ясо" })
