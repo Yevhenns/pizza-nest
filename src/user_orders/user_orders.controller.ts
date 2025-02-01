@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { UserOrdersService } from './user_orders.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -12,8 +12,8 @@ export class UserOrdersController {
     description:
       'This endpoint retrieves a list of all orders placed by a specific user, identified by their userId.',
   })
-  @Get()
-  findAll(@Query('userId') userId: string) {
+  @Get(':userId')
+  findAll(@Param('userId') userId: string) {
     return this.productService.findUserOrdersAll(userId);
   }
 }
