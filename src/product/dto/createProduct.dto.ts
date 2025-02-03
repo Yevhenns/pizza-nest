@@ -1,4 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/mapped-types';
 
 export enum ProductCategory {
   PIZZA = 'Піца',
@@ -6,34 +7,87 @@ export enum ProductCategory {
   DRINKS = 'Напої',
 }
 
-export class CreateProductDto {
-  @ApiProperty({ example: '5 сирів' })
-  title: string;
-
-  @ApiProperty({ example: 'Смачна піца 5 сирів' })
-  description: string;
-
-  @ApiProperty({ example: '50см' })
-  dimension: string;
-
-  @ApiProperty({ example: 400 })
-  price: number;
-
-  @ApiProperty({
+const examples = {
+  title: { example: '5 сирів' },
+  description: { example: 'Смачна піца 5 сирів' },
+  dimension: { example: '50см' },
+  price: { example: 400 },
+  photo: {
     example:
       'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/cmzbifr7ssgugxtgnrtn.png',
-  })
+  },
+  category: { example: 'Піца', enum: ProductCategory },
+  promotion: { example: false },
+  promPrice: { example: 380 },
+  vegan: { example: false },
+};
+
+const {
+  category,
+  description,
+  dimension,
+  photo,
+  price,
+  promotion,
+  title,
+  promPrice,
+  vegan,
+} = examples;
+
+export class CreateProductDto {
+  @ApiProperty(title)
+  title: string;
+
+  @ApiProperty(description)
+  description: string;
+
+  @ApiProperty(dimension)
+  dimension: string;
+
+  @ApiProperty(price)
+  price: number;
+
+  @ApiProperty(photo)
   photo: string;
 
-  @ApiProperty({ example: 'Піца', enum: ProductCategory })
+  @ApiProperty(category)
   category: ProductCategory;
 
-  @ApiProperty({ example: false })
+  @ApiProperty(promotion)
   promotion: boolean;
 
-  @ApiProperty({ example: 380 })
+  @ApiProperty(promPrice)
   promPrice: number;
 
-  @ApiProperty({ example: false })
+  @ApiProperty(vegan)
   vegan: boolean;
+}
+
+export class UpdateProductDto extends PartialType(CreateProductDto) {
+  @ApiPropertyOptional(title)
+  title?: string;
+
+  @ApiPropertyOptional(description)
+  description?: string;
+
+  @ApiPropertyOptional(dimension)
+  dimension?: string;
+
+  @ApiPropertyOptional(price)
+  price?: number;
+
+  @ApiPropertyOptional(photo)
+  photo?: string;
+
+  @ApiPropertyOptional(category)
+  category: ProductCategory;
+
+  @ApiPropertyOptional(promotion)
+  promotion?: boolean;
+
+  @ApiPropertyOptional(promPrice)
+  promPrice?: number;
+
+  @ApiPropertyOptional(vegan)
+  vegan?: boolean;
 }

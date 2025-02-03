@@ -4,12 +4,13 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateProductDto } from './dto/createProduct.dto';
+import { CreateProductDto, UpdateProductDto } from './dto/createProduct.dto';
 
 @Controller('products')
 export class ProductController {
@@ -37,6 +38,21 @@ export class ProductController {
     @Query('userId') userId: string,
   ) {
     await this.productService.createProduct(dto, userId);
+    return { success: true };
+  }
+
+  @ApiTags('Products')
+  @ApiOperation({
+    summary: 'Update an existing product',
+    description: 'This endpoint updates an existing product.',
+  })
+  @Patch(':productId')
+  async updateProduct(
+    @Body() dto: UpdateProductDto,
+    @Param('productId') productId: string,
+    @Query('userId') userId: string,
+  ) {
+    await this.productService.updateProduct(productId, dto, userId);
     return { success: true };
   }
 

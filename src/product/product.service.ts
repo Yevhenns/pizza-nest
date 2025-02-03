@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './schemas/product.schema';
 import { Model } from 'mongoose';
-import { CreateProductDto } from './dto/createProduct.dto';
+import { CreateProductDto, UpdateProductDto } from './dto/createProduct.dto';
 
 @Injectable()
 export class ProductService {
@@ -25,6 +25,32 @@ export class ProductService {
 
     const createdProduct = new this.productModel(dto);
     return createdProduct.save();
+  }
+
+  // updateProduct
+  async updateProduct(
+    productId: string,
+    dto: UpdateProductDto,
+    userId: string,
+  ) {
+    const adminId = process.env.ADMIN_ID;
+
+    if (adminId !== userId) {
+      throw new Error('Unauthorized: Only admin can update products');
+    }
+
+    const updatedProduct = await this.productModel
+      .findByIdAndUpdate(productId, dto, { new: true })
+      .exec();
+
+    if (!updatedProduct) {
+      throw new Error('Product not found');
+    }
+
+    return {
+      message: 'Product updated successfully',
+      product: updatedProduct,
+    };
   }
 
   // deleteById
