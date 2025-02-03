@@ -16,6 +16,7 @@ import { CreateProductDto, UpdateProductDto } from './dto/createProduct.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  // GET
   @ApiTags('Products')
   @ApiOperation({
     summary: 'Get a list of all products',
@@ -27,6 +28,7 @@ export class ProductController {
     return this.productService.findAll();
   }
 
+  // POST
   @ApiTags('Products')
   @ApiOperation({
     summary: 'Create a new product',
@@ -41,6 +43,7 @@ export class ProductController {
     return { success: true };
   }
 
+  // PATCH
   @ApiTags('Products')
   @ApiOperation({
     summary: 'Update an existing product',
@@ -56,6 +59,7 @@ export class ProductController {
     return { success: true };
   }
 
+  // DELETE
   @ApiTags('Products')
   @ApiOperation({
     summary: 'Delete a product by its ID',

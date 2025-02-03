@@ -4,17 +4,22 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
 import { SupplementsService } from './supplements.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateSupplementDto } from './dto/createSupplement.dto';
+import {
+  CreateSupplementDto,
+  UpdateSupplementDto,
+} from './dto/createSupplement.dto';
 
 @Controller('supplements')
 export class SupplementsController {
   constructor(private readonly supplementService: SupplementsService) {}
 
+  // GET
   @ApiTags('Supplements')
   @ApiOperation({
     summary: 'Get a list of all supplements',
@@ -26,6 +31,7 @@ export class SupplementsController {
     return this.supplementService.findAll();
   }
 
+  // POST
   @ApiTags('Supplements')
   @ApiOperation({
     summary: 'Create a new supplement',
@@ -40,6 +46,23 @@ export class SupplementsController {
     return { success: true };
   }
 
+  // PATCH
+  @ApiTags('Supplements')
+  @ApiOperation({
+    summary: 'Update an existing supplement',
+    description: 'This endpoint updates an existing supplement.',
+  })
+  @Patch(':supplementId')
+  async updateSupplement(
+    @Body() dto: UpdateSupplementDto,
+    @Param('supplementId') supplementId: string,
+    @Query('userId') userId: string,
+  ) {
+    await this.supplementService.updateSupplement(supplementId, dto, userId);
+    return { success: true };
+  }
+
+  // DELETE
   @ApiTags('Supplements')
   @ApiOperation({
     summary: 'Delete a supplement by its ID',

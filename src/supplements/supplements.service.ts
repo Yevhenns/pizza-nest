@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Supplement } from './schemas/supplements.schema';
 import { Model } from 'mongoose';
-import { CreateSupplementDto } from './dto/createSupplement.dto';
+import {
+  CreateSupplementDto,
+  UpdateSupplementDto,
+} from './dto/createSupplement.dto';
 
 @Injectable()
 export class SupplementsService {
@@ -28,6 +31,32 @@ export class SupplementsService {
 
     const createdSupplement = new this.supplementModel(dto);
     return createdSupplement.save();
+  }
+
+  // updateSupplement
+  async updateSupplement(
+    supplementId: string,
+    dto: UpdateSupplementDto,
+    userId: string,
+  ) {
+    const adminId = process.env.ADMIN_ID;
+
+    if (adminId !== userId) {
+      throw new Error('Unauthorized: Only admin can update supplements');
+    }
+
+    const updatedSupplement = await this.supplementModel
+      .findByIdAndUpdate(supplementId, dto, { new: true })
+      .exec();
+
+    if (!updatedSupplement) {
+      throw new Error('Supplement not found');
+    }
+
+    return {
+      message: 'Supplement updated successfully',
+      product: updatedSupplement,
+    };
   }
 
   // deleteById
