@@ -29,3 +29,5 @@ production mode
 ```bash
 npm run start:prod
 ```
+
+Open [localhost 3000](http://localhost:3000/api)
