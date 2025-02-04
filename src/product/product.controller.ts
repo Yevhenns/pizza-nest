@@ -10,7 +10,11 @@ import {
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CreateProductDto, UpdateProductDto } from './dto/createProduct.dto';
+import {
+  CreateProductDto,
+  CreateProductListDto,
+} from './dto/createProduct.dto';
+import { UpdateProductDto } from './dto/updateProduct.dto';
 
 @Controller('products')
 export class ProductController {
@@ -34,12 +38,27 @@ export class ProductController {
     summary: 'Create a new product',
     description: 'This endpoint creates a new product.',
   })
-  @Post()
+  @Post('create_product')
   async createProduct(
     @Body() dto: CreateProductDto,
     @Query('userId') userId: string,
   ) {
     await this.productService.createProduct(dto, userId);
+    return { success: true };
+  }
+
+  // POST
+  @ApiTags('Products')
+  @ApiOperation({
+    summary: 'Create a list of products',
+    description: 'This endpoint creates a list of products.',
+  })
+  @Post('create_products')
+  async createProductList(
+    @Body() dto: CreateProductListDto,
+    @Query('userId') userId: string,
+  ) {
+    await this.productService.createProductList(dto, userId);
     return { success: true };
   }
 

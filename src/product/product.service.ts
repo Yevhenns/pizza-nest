@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './schemas/product.schema';
 import { Model } from 'mongoose';
-import { CreateProductDto, UpdateProductDto } from './dto/createProduct.dto';
+import {
+  CreateProductDto,
+  CreateProductListDto,
+} from './dto/createProduct.dto';
+import { UpdateProductDto } from './dto/updateProduct.dto';
 
 @Injectable()
 export class ProductService {
@@ -25,6 +29,20 @@ export class ProductService {
 
     const createdProduct = new this.productModel(dto);
     return createdProduct.save();
+  }
+
+  // createProductList
+  async createProductList(
+    dto: CreateProductListDto,
+    userId: string,
+  ): Promise<Product[]> {
+    const adminId = process.env.ADMIN_ID;
+
+    if (adminId !== userId) {
+      throw new Error('Unauthorized: Only admin can create products');
+    }
+
+    return this.productModel.insertMany(dto.products);
   }
 
   // updateProduct

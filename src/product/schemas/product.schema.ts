@@ -4,7 +4,7 @@ import { ProductCategory } from '../dto/createProduct.dto';
 
 export type ProductDocument = HydratedDocument<Product>;
 
-@Schema({ versionKey: false })
+@Schema({ _id: false, versionKey: false })
 export class Product {
   @Prop({ required: true })
   title: string;

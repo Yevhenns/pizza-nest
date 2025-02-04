@@ -1,26 +1,11 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PartialType } from '@nestjs/mapped-types';
+import { ApiProperty } from '@nestjs/swagger';
+import { examples, products } from './examples';
 
 export enum ProductCategory {
   PIZZA = 'Піца',
   APPETIZERS = 'Закуски',
   DRINKS = 'Напої',
 }
-
-const examples = {
-  title: { example: '5 сирів' },
-  description: { example: 'Смачна піца 5 сирів' },
-  dimension: { example: '50см' },
-  price: { example: 400 },
-  photo: {
-    example:
-      'https://res.cloudinary.com/dyka4vajb/image/upload/v1698576734/hatamagnata/pizzas/cmzbifr7ssgugxtgnrtn.png',
-  },
-  category: { example: 'Піца', enum: ProductCategory },
-  promotion: { example: false },
-  promPrice: { example: 380 },
-  vegan: { example: false },
-};
 
 const {
   category,
@@ -63,31 +48,10 @@ export class CreateProductDto {
   vegan: boolean;
 }
 
-export class UpdateProductDto extends PartialType(CreateProductDto) {
-  @ApiPropertyOptional(title)
-  title?: string;
-
-  @ApiPropertyOptional(description)
-  description?: string;
-
-  @ApiPropertyOptional(dimension)
-  dimension?: string;
-
-  @ApiPropertyOptional(price)
-  price?: number;
-
-  @ApiPropertyOptional(photo)
-  photo?: string;
-
-  @ApiPropertyOptional(category)
-  category: ProductCategory;
-
-  @ApiPropertyOptional(promotion)
-  promotion?: boolean;
-
-  @ApiPropertyOptional(promPrice)
-  promPrice?: number;
-
-  @ApiPropertyOptional(vegan)
-  vegan?: boolean;
+export class CreateProductListDto {
+  @ApiProperty({
+    type: [CreateProductDto],
+    example: products,
+  })
+  products: CreateProductDto[];
 }
