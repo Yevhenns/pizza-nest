@@ -52,7 +52,7 @@ export class CreateProductDto {
   @ApiProperty({ ...price, minimum: 1, maximum: 1000, required: true })
   @IsNumber({}, { message: 'price must be number' })
   @Min(1, { message: 'price must be more than 0' })
-  @Max(10000, { message: 'price must be less or equal 1000' })
+  @Max(1000, { message: 'price must be less or equal 1000' })
   price: number;
 
   @ApiProperty({ ...photo, description: 'photo must be URL', required: true })
