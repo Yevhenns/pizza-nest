@@ -19,25 +19,25 @@ import {
 export class SupplementsController {
   constructor(private readonly supplementService: SupplementsService) {}
 
-  // GET
+  // get all
   @ApiTags('Supplements')
+  @Get()
   @ApiOperation({
     summary: 'Get a list of all supplements',
     description:
       'This endpoint returns a list of all available supplements in the store.',
   })
-  @Get()
   findAll() {
     return this.supplementService.findAll();
   }
 
-  // POST
+  // add one
   @ApiTags('Supplements')
+  @Post()
   @ApiOperation({
     summary: 'Create a new supplement',
     description: 'This endpoint creates a new supplement.',
   })
-  @Post()
   async createSupplement(
     @Body() dto: CreateSupplementDto,
     @Query('userId') userId: string,
@@ -46,13 +46,13 @@ export class SupplementsController {
     return { success: true };
   }
 
-  // PATCH
+  // update one
   @ApiTags('Supplements')
+  @Patch(':supplementId')
   @ApiOperation({
     summary: 'Update an existing supplement',
     description: 'This endpoint updates an existing supplement.',
   })
-  @Patch(':supplementId')
   async updateSupplement(
     @Body() dto: UpdateSupplementDto,
     @Param('supplementId') supplementId: string,
@@ -62,14 +62,14 @@ export class SupplementsController {
     return { success: true };
   }
 
-  // DELETE
+  // delete one
   @ApiTags('Supplements')
+  @Delete(':supplementId')
   @ApiOperation({
     summary: 'Delete a supplement by its ID',
     description:
       'This endpoint deletes a supplement from the database based on the provided supplement ID.',
   })
-  @Delete(':supplementId')
   async deleteById(
     @Param('supplementId') supplementId: string,
     @Query('userId') userId: string,

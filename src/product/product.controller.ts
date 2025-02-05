@@ -20,25 +20,25 @@ import { UpdateProductDto } from './dto/updateProduct.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  // GET
+  // get all
   @ApiTags('Products')
+  @Get()
   @ApiOperation({
     summary: 'Get a list of all products',
     description:
       'This endpoint returns a list of all available products in the store.',
   })
-  @Get()
   findAll() {
     return this.productService.findAll();
   }
 
-  // POST
+  // add one
   @ApiTags('Products')
+  @Post('create_product')
   @ApiOperation({
     summary: 'Create a new product',
     description: 'This endpoint creates a new product.',
   })
-  @Post('create_product')
   async createProduct(
     @Body() dto: CreateProductDto,
     @Query('userId') userId: string,
@@ -47,13 +47,13 @@ export class ProductController {
     return { success: true };
   }
 
-  // POST
+  // add list
   @ApiTags('Products')
+  @Post('create_products')
   @ApiOperation({
     summary: 'Create a list of products',
     description: 'This endpoint creates a list of products.',
   })
-  @Post('create_products')
   async createProductList(
     @Body() dto: CreateProductListDto,
     @Query('userId') userId: string,
@@ -62,13 +62,13 @@ export class ProductController {
     return { success: true };
   }
 
-  // PATCH
+  // update one
   @ApiTags('Products')
+  @Patch(':productId')
   @ApiOperation({
     summary: 'Update an existing product',
     description: 'This endpoint updates an existing product.',
   })
-  @Patch(':productId')
   async updateProduct(
     @Body() dto: UpdateProductDto,
     @Param('productId') productId: string,
@@ -78,14 +78,14 @@ export class ProductController {
     return { success: true };
   }
 
-  // DELETE
+  // delete one
   @ApiTags('Products')
+  @Delete(':productId')
   @ApiOperation({
     summary: 'Delete a product by its ID',
     description:
       'This endpoint deletes a product from the database based on the provided product ID.',
   })
-  @Delete(':productId')
   async deleteById(
     @Param('productId') productId: string,
     @Query('userId') userId: string,
