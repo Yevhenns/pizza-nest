@@ -1,5 +1,5 @@
 import { ApiPropertyOptional, PartialType } from '@nestjs/swagger';
-import { examples } from './examples';
+import { productExamples } from './examples';
 import { CreateProductDto, ProductCategory } from './createProduct.dto';
 
 const {
@@ -12,7 +12,7 @@ const {
   title,
   promPrice,
   vegan,
-} = examples;
+} = productExamples;
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {
   @ApiPropertyOptional(title)
@@ -31,7 +31,7 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
   photo?: string;
 
   @ApiPropertyOptional(category)
-  category: ProductCategory;
+  category?: ProductCategory;
 
   @ApiPropertyOptional(promotion)
   promotion?: boolean;

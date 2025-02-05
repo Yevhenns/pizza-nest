@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { examples, products } from './examples';
+import { productExamples, products } from './examples';
 import {
   IsBoolean,
   IsEnum,
@@ -28,7 +28,7 @@ const {
   title,
   promPrice,
   vegan,
-} = examples;
+} = productExamples;
 
 export class CreateProductDto {
   @ApiProperty({ ...title, minLength: 3, maxLength: 20, required: true })

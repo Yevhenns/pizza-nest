@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Supplement } from './schemas/supplements.schema';
 import { Model } from 'mongoose';
-import {
-  CreateSupplementDto,
-  UpdateSupplementDto,
-} from './dto/createSupplement.dto';
+import { CreateSupplementDto } from './dto/createSupplement.dto';
+import { UpdateSupplementDto } from './dto/updateSupplement.dto';
 
 @Injectable()
 export class SupplementsService {

@@ -10,10 +10,8 @@ import {
 } from '@nestjs/common';
 import { SupplementsService } from './supplements.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import {
-  CreateSupplementDto,
-  UpdateSupplementDto,
-} from './dto/createSupplement.dto';
+import { CreateSupplementDto } from './dto/createSupplement.dto';
+import { UpdateSupplementDto } from './dto/updateSupplement.dto';
 
 @Controller('supplements')
 export class SupplementsController {

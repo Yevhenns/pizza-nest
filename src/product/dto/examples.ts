@@ -39,7 +39,7 @@ const {
   vegan,
 } = products[0];
 
-export const examples = {
+export const productExamples = {
   title: { example: title },
   description: { example: description },
   dimension: { example: dimension },
