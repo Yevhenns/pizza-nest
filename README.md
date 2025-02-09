@@ -30,7 +30,7 @@ production mode
 npm run start:prod
 ```
 
-With Docker
+with Docker
 
 ```bash
 docker-compose up --build
