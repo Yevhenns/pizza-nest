@@ -2,12 +2,6 @@
 
 Backend for Nostra Pizza with email order confirmations. Orders are sent to the owner's Gmail account. MongoDB stores products and orders from authenticated users. The backend is documented with Swagger for easy API interaction. It’s optimized for scalability and performance, supporting multiple devices and ensuring smooth operation for both users and administrators.
 
-## Run with Docker
-
-```bash
-docker-compose up --build
-```
-
 ## Installation
 
 ```bash
@@ -36,4 +30,10 @@ production mode
 npm run start:prod
 ```
 
-Open [localhost 3000](http://localhost:3000/api)
+With Docker
+
+```bash
+docker-compose up --build
+```
+
+Open [localhost 3000/api](http://localhost:3000/api)
