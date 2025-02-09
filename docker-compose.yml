@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: pizza-nest
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+    command: ['node', 'dist/main.js']
