@@ -25,6 +25,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Pizza API Documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .setDescription('https://pizza-nest.onrender.com/api/v1')
     .addServer(
       'https://pizza-nest.onrender.com/api/v1',

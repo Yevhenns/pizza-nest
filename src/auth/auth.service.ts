@@ -2,5 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-  async googleSignUp() {}
+  async googleSignIn() {}
+
+  async signUp() {}
+
+  async signIn() {}
 }
