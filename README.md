@@ -33,7 +33,7 @@ npm run start:prod
 with Docker
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 Open [localhost 3000/api](http://localhost:3000/api)
