@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { UserOrder } from './schemas/user_orders.schema';
 
 @Injectable()
-export class UserOrdersService {
+export class UsersService {
   constructor(
     @InjectModel(UserOrder.name) private userProductModel: Model<UserOrder>,
   ) {}

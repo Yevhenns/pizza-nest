@@ -1,11 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { SendEmailService } from './send_email.service';
-import { CreateEmailBodyDto } from './dto/createEmailBody.dto';
+import { OrdersService } from './orders.service';
+import { CreateOrderDto } from './dto/createOrder.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('send_email')
-export class SendEmailController {
-  constructor(private readonly sendEmailService: SendEmailService) {}
+@Controller('orders')
+export class OrdersController {
+  constructor(private readonly OrdersService: OrdersService) {}
 
   @ApiTags('Orders')
   @ApiOperation({
@@ -14,8 +14,8 @@ export class SendEmailController {
       'This endpoint sends an email to the store owner via Gmail. It includes the order information in the email body.',
   })
   @Post()
-  async sendEmail(@Body() dto: CreateEmailBodyDto) {
-    await this.sendEmailService.sendEmail(dto);
+  async sendEmail(@Body() dto: CreateOrderDto) {
+    await this.OrdersService.sendEmail(dto);
     return { success: true };
   }
 }

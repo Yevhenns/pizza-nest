@@ -104,7 +104,7 @@ export class OrderDto {
   order: OrderItemDto[];
 }
 
-export class CreateEmailBodyDto {
+export class CreateOrderDto {
   @ApiProperty({ type: CustomerInfoDto })
   @Type(() => CustomerInfoDto)
   customerInfo: CustomerInfoDto;

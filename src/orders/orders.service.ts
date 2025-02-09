@@ -3,11 +3,11 @@ import * as handlebars from 'handlebars';
 import * as nodemailer from 'nodemailer';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { CreateEmailBodyDto } from './dto/createEmailBody.dto';
+import { CreateOrderDto } from './dto/createOrder.dto';
 
 @Injectable()
-export class SendEmailService {
-  private readonly logger = new Logger(SendEmailService.name);
+export class OrdersService {
+  private readonly logger = new Logger(OrdersService.name);
 
   private readonly templatePath = join(__dirname, 'views/index.hbs');
 
@@ -20,7 +20,7 @@ export class SendEmailService {
     }
   }
 
-  async sendEmail(dto: CreateEmailBodyDto) {
+  async sendEmail(dto: CreateOrderDto) {
     const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
 

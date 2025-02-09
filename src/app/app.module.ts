@@ -3,10 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HealthModule } from 'src/health/health.module';
 import { ProductModule } from '../product/product.module';
-import { SendEmailModule } from 'src/send_email/send_email.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import { UserOrdersModule } from 'src/user_orders/user_orders.module';
+import { UsersModule } from 'src/users/users.module';
 import { SupplementsModule } from 'src/supplements/supplements.module';
+import { OrdersModule } from 'src/orders/orders.module';
 
 @Module({
   imports: [
@@ -27,8 +27,8 @@ import { SupplementsModule } from 'src/supplements/supplements.module';
     HealthModule,
     ProductModule,
     SupplementsModule,
-    UserOrdersModule,
-    SendEmailModule,
+    UsersModule,
+    OrdersModule,
   ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { UserOrdersController } from './user_orders.controller';
-import { UserOrdersService } from './user_orders.service';
+import { UsersController } from './users.controller';
+import { UsersService } from './users.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserOrder, UserOrderSchema } from './schemas/user_orders.schema';
 
@@ -10,7 +10,7 @@ import { UserOrder, UserOrderSchema } from './schemas/user_orders.schema';
       { name: UserOrder.name, schema: UserOrderSchema },
     ]),
   ],
-  controllers: [UserOrdersController],
-  providers: [UserOrdersService],
+  controllers: [UsersController],
+  providers: [UsersService],
 })
-export class UserOrdersModule {}
+export class UsersModule {}

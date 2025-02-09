@@ -6,7 +6,7 @@
     "deleteOutDir": true,
     "assets": [
       {
-        "include": "send_email/views/**/*",
+        "include": "orders/views/**/*",
         "outDir": "dist/"
       }
     ],

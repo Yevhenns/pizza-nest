@@ -1,10 +1,10 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { UserOrdersService } from './user_orders.service';
+import { UsersService } from './users.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('user_orders')
-export class UserOrdersController {
-  constructor(private readonly productService: UserOrdersService) {}
+@Controller('users')
+export class UsersController {
+  constructor(private readonly productService: UsersService) {}
 
   @ApiTags('Users')
   @ApiOperation({
