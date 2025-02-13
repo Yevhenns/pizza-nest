@@ -5,7 +5,7 @@ services:
     build: .
     container_name: pizza-nest
     ports:
-      - '3000:3000'
+      - '3001:3001'
     volumes:
       - .:/usr/src/app
     command: ['node', 'dist/main.js']
