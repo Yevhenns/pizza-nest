@@ -36,32 +36,32 @@ export class AuthController {
     return { success: true, token, user };
   }
 
-  // @ApiTags('Auth')
-  // @Post('sign_in')
-  // @ApiOperation({
-  //   summary: 'Sign-In (In progress)',
-  //   description:
-  //     'Endpoint for signing in users.If the user exists, they will be logged in. Returns a JWT token for authorized requests.',
-  // })
-  // async signIn(@Body() dto: LoginDto) {
-  //   if (!dto.email || !dto.password) {
-  //     throw new HttpException(
-  //       'Missing email or password',
-  //       HttpStatus.BAD_REQUEST,
-  //     );
-  //   }
+  @ApiTags('Auth')
+  @Post('sign_in')
+  @ApiOperation({
+    summary: 'Sign-In (In progress)',
+    description:
+      'Endpoint for signing in users.If the user exists, they will be logged in. Returns a JWT token for authorized requests.',
+  })
+  async signIn(@Body() dto: LoginDto) {
+    if (!dto.email || !dto.password) {
+      throw new HttpException(
+        'Missing email or password',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
-  //   const { user, token } = await this.authService.signIn(
-  //     dto.email,
-  //     dto.password,
-  //   );
+    const { user, token } = await this.authService.signIn(
+      dto.email,
+      dto.password,
+    );
 
-  //   if (!user) {
-  //     throw new HttpException('Authentication failed', HttpStatus.UNAUTHORIZED);
-  //   }
+    if (!user) {
+      throw new HttpException('Authentication failed', HttpStatus.UNAUTHORIZED);
+    }
 
-  //   return { success: true, token, user };
-  // }
+    return { success: true, token, user };
+  }
 
   @ApiTags('Auth')
   @Post('sign_up')
