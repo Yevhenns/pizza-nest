@@ -43,18 +43,15 @@ export class AuthController {
     description:
       'Endpoint for signing in users.If the user exists, they will be logged in. Returns a JWT token for authorized requests.',
   })
-  async signIn(@Body() dto: LoginDto) {
-    if (!dto.email || !dto.password) {
+  async signIn(@Body() { email, password }: LoginDto) {
+    if (!email || !password) {
       throw new HttpException(
         'Missing email or password',
         HttpStatus.BAD_REQUEST,
       );
     }
 
-    const { user, token } = await this.authService.signIn(
-      dto.email,
-      dto.password,
-    );
+    const { user, token } = await this.authService.signIn({ email, password });
 
     if (!user) {
       throw new HttpException('Authentication failed', HttpStatus.UNAUTHORIZED);

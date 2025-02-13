@@ -24,20 +24,18 @@ export class LoginDto {
   @ApiProperty({
     example: 'asd@gmail.com',
     minLength: 2,
-    maxLength: 10,
     required: true,
   })
   @IsString()
   @MinLength(3, { message: 'dimension min length: 3' })
-  @MaxLength(50, { message: 'dimension max length: 50' })
   email: string;
 
   @ApiProperty({
-    example: 'qwerty1',
-    description: 'photo must be URL',
+    example: 'qwert1111',
+    description: 'password',
     required: true,
   })
-  @IsUrl({}, { message: 'photo must be URL' })
+  @IsString()
   password: string;
 }
 
@@ -74,11 +72,11 @@ export class CreateUserDto {
   phoneNumber: string;
 
   @ApiProperty({
-    example: 'qwerty1',
-    description: 'photo must be URL',
+    example: 'qwert1111',
+    description: 'password',
     required: true,
   })
-  @IsUrl({}, { message: 'photo must be URL' })
+  @IsString()
   password: string;
 
   @ApiProperty({

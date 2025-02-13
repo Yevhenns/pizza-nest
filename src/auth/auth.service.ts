@@ -5,7 +5,7 @@ import { User } from './schemas/user.schema';
 import * as jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 import { CreateUserDto, UserRole } from './dto/createUser.dto';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -63,24 +63,28 @@ export class AuthService {
     return { token: jwtToken, user };
   }
 
-  async signIn(
-    email: string,
-    password: string,
-  ): Promise<{ token: string; user: User }> {
+  async signIn({ email, password }): Promise<{ token: string; user: User }> {
     const jwtSecret = process.env.JWT_SECRET as string;
     const user = await this.userModel.findOne({ email: email });
+
     if (!user) {
       throw new HttpException('Does not exist', HttpStatus.BAD_REQUEST);
     }
-    const isPasswordValid = bcrypt.compareSync(password, user.password);
 
-    if (!isPasswordValid) {
-      throw new HttpException('wrong password', HttpStatus.UNAUTHORIZED);
+    if (user) {
+      console.log(user.password);
+      console.log(password);
+      const isPasswordValid = bcrypt.compareSync(password, user.password);
+      console.log(isPasswordValid);
+
+      if (!isPasswordValid) {
+        throw new HttpException('wrong password', HttpStatus.UNAUTHORIZED);
+      }
+      const userInfo = { userId: user._id, role: user.role };
+      const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+
+      return { token: jwtToken, user };
     }
-    const userInfo = { userId: user._id, role: user.role };
-    const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
-
-    return { token: jwtToken, user };
   }
 
   async signUp() {}
