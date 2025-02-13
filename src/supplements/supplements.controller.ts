@@ -7,11 +7,13 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { SupplementsService } from './supplements.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateSupplementDto } from './dto/createSupplement.dto';
 import { UpdateSupplementDto } from './dto/updateSupplement.dto';
+import { JwtAuthGuard } from 'src/app/jwt-auth.guard';
 
 @Controller('supplements')
 export class SupplementsController {
@@ -32,6 +34,8 @@ export class SupplementsController {
   // add one
   @ApiTags('Supplements')
   @Post()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({
     summary: 'Create a new supplement',
     description: 'This endpoint creates a new supplement.',
@@ -47,6 +51,8 @@ export class SupplementsController {
   // update one
   @ApiTags('Supplements')
   @Patch(':supplementId')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({
     summary: 'Update an existing supplement',
     description: 'This endpoint updates an existing supplement.',
@@ -63,6 +69,8 @@ export class SupplementsController {
   // delete one
   @ApiTags('Supplements')
   @Delete(':supplementId')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({
     summary: 'Delete a supplement by its ID',
     description:

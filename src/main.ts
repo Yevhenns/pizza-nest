@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://nostrra-pizzza.vercel.app'],
+    origin: ['http://localhost:3001', 'https://nostrra-pizzza.vercel.app'],
     methods: ['GET', 'POST', 'DELETE'],
     credentials: true,
   });
@@ -31,7 +31,7 @@ async function bootstrap() {
       'https://pizza-nest.onrender.com/api/v1',
       'Production server (on Render)',
     )
-    .addServer('http://localhost:3000/api/v1', 'Development server (localhost)')
+    .addServer('http://localhost:3001/api/v1', 'Development server (localhost)')
     .build();
 
   const document = SwaggerModule.createDocument(app, config, {
@@ -40,6 +40,6 @@ async function bootstrap() {
 
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
