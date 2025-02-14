@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
+  IsEnum,
   IsNumber,
   IsString,
   Max,
@@ -51,6 +52,9 @@ export class CreateSupplementDto {
     description: 'for_category must be one of: Піца, Закуски',
     enum: SupplementForCategory,
     required: true,
+  })
+  @IsEnum(SupplementForCategory, {
+    message: 'for_category must be one of the allowed categories',
   })
   for_category: SupplementForCategory;
 }

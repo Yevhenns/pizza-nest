@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
   UseGuards,
 } from '@nestjs/common';
 import { SupplementsService } from './supplements.service';
@@ -40,11 +39,8 @@ export class SupplementsController {
     summary: 'Create a new supplement',
     description: 'This endpoint creates a new supplement.',
   })
-  async createSupplement(
-    @Body() dto: CreateSupplementDto,
-    @Query('userId') userId: string,
-  ) {
-    await this.supplementService.createSupplement(dto, userId);
+  async createSupplement(@Body() dto: CreateSupplementDto) {
+    await this.supplementService.createSupplement(dto);
     return { success: true };
   }
 
@@ -60,9 +56,8 @@ export class SupplementsController {
   async updateSupplement(
     @Body() dto: UpdateSupplementDto,
     @Param('supplementId') supplementId: string,
-    @Query('userId') userId: string,
   ) {
-    await this.supplementService.updateSupplement(supplementId, dto, userId);
+    await this.supplementService.updateSupplement(supplementId, dto);
     return { success: true };
   }
 
@@ -76,11 +71,8 @@ export class SupplementsController {
     description:
       'This endpoint deletes a supplement from the database based on the provided supplement ID.',
   })
-  async deleteById(
-    @Param('supplementId') supplementId: string,
-    @Query('userId') userId: string,
-  ) {
-    await this.supplementService.deleteById(supplementId, userId);
+  async deleteById(@Param('supplementId') supplementId: string) {
+    await this.supplementService.deleteById(supplementId);
     return { success: true };
   }
 }

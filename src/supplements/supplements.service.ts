@@ -17,32 +17,13 @@ export class SupplementsService {
   }
 
   // createSupplement
-  async createSupplement(
-    dto: CreateSupplementDto,
-    userId: string,
-  ): Promise<Supplement> {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can create supplements');
-    }
-
+  async createSupplement(dto: CreateSupplementDto): Promise<Supplement> {
     const createdSupplement = new this.supplementModel(dto);
     return createdSupplement.save();
   }
 
   // updateSupplement
-  async updateSupplement(
-    supplementId: string,
-    dto: UpdateSupplementDto,
-    userId: string,
-  ) {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can update supplements');
-    }
-
+  async updateSupplement(supplementId: string, dto: UpdateSupplementDto) {
     const updatedSupplement = await this.supplementModel
       .findByIdAndUpdate(supplementId, dto, { new: true })
       .exec();
@@ -58,13 +39,7 @@ export class SupplementsService {
   }
 
   // deleteById
-  async deleteById(supplementId: string, userId: string) {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can delete supplements');
-    }
-
+  async deleteById(supplementId: string) {
     const deletedSupplement = await this.supplementModel
       .findByIdAndDelete(supplementId)
       .exec();

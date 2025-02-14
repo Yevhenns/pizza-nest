@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
@@ -43,11 +42,8 @@ export class ProductController {
     summary: 'Create a new product',
     description: 'This endpoint creates a new product.',
   })
-  async createProduct(
-    @Body() dto: CreateProductDto,
-    @Query('userId') userId: string,
-  ) {
-    await this.productService.createProduct(dto, userId);
+  async createProduct(@Body() dto: CreateProductDto) {
+    await this.productService.createProduct(dto);
     return { success: true };
   }
 
@@ -60,11 +56,8 @@ export class ProductController {
     summary: 'Create a list of products',
     description: 'This endpoint creates a list of products.',
   })
-  async createProductList(
-    @Body() dto: CreateProductListDto,
-    @Query('userId') userId: string,
-  ) {
-    await this.productService.createProductList(dto, userId);
+  async createProductList(@Body() dto: CreateProductListDto) {
+    await this.productService.createProductList(dto);
     return { success: true };
   }
 
@@ -80,9 +73,8 @@ export class ProductController {
   async updateProduct(
     @Body() dto: UpdateProductDto,
     @Param('productId') productId: string,
-    @Query('userId') userId: string,
   ) {
-    await this.productService.updateProduct(productId, dto, userId);
+    await this.productService.updateProduct(productId, dto);
     return { success: true };
   }
 
@@ -96,11 +88,8 @@ export class ProductController {
     description:
       'This endpoint deletes a product from the database based on the provided product ID.',
   })
-  async deleteById(
-    @Param('productId') productId: string,
-    @Query('userId') userId: string,
-  ) {
-    await this.productService.deleteById(productId, userId);
+  async deleteById(@Param('productId') productId: string) {
+    await this.productService.deleteById(productId);
     return { success: true };
   }
 }

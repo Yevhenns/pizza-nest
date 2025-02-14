@@ -20,43 +20,18 @@ export class ProductService {
   }
 
   // createProduct
-  async createProduct(dto: CreateProductDto, userId: string): Promise<Product> {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can create products');
-    }
-
+  async createProduct(dto: CreateProductDto): Promise<Product> {
     const createdProduct = new this.productModel(dto);
     return createdProduct.save();
   }
 
   // createProductList
-  async createProductList(
-    dto: CreateProductListDto,
-    userId: string,
-  ): Promise<Product[]> {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can create products');
-    }
-
+  async createProductList(dto: CreateProductListDto): Promise<Product[]> {
     return this.productModel.insertMany(dto.products);
   }
 
   // updateProduct
-  async updateProduct(
-    productId: string,
-    dto: UpdateProductDto,
-    userId: string,
-  ) {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can update products');
-    }
-
+  async updateProduct(productId: string, dto: UpdateProductDto) {
     const updatedProduct = await this.productModel
       .findByIdAndUpdate(productId, dto, { new: true })
       .exec();
@@ -72,13 +47,7 @@ export class ProductService {
   }
 
   // deleteById
-  async deleteById(productId: string, userId: string) {
-    const adminId = process.env.ADMIN_ID;
-
-    if (adminId !== userId) {
-      throw new Error('Unauthorized: Only admin can delete products');
-    }
-
+  async deleteById(productId: string) {
     const deletedProduct = await this.productModel
       .findByIdAndDelete(productId)
       .exec();
