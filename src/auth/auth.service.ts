@@ -2,20 +2,32 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './schemas/user.schema';
-import * as jwt from 'jsonwebtoken';
+// import * as jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 import { CreateUserDto, UserRole } from './dto/createUser.dto';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    private readonly jwtService: JwtService,
+    @InjectModel(User.name) private userModel: Model<User>,
+    private configService: ConfigService,
+  ) {}
+  generateToken(user: any): string {
+    const jwtSecret = this.configService.get<string>('JWT_SECRET');
+    const payload = { userId: user._id, role: user.role };
+    console.log('JWT_SECRET:', jwtSecret);
+    return this.jwtService.sign(payload, { secret: jwtSecret });
+  }
 
   async googleSignIn(
     googleToken: string,
   ): Promise<{ token: string; user: User }> {
     const clientId = process.env.GOOGLE_CLIENT_ID;
-    const jwtSecret = process.env.JWT_SECRET as string;
+    // const jwtSecret = process.env.JWT_SECRET as string;
 
     if (!clientId) {
       throw new Error(
@@ -57,14 +69,15 @@ export class AuthService {
       user = await createdUser.save();
     }
 
-    const userInfo = { userId: user._id, role: user.role };
-    const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+    // const userInfo = { userId: user._id, role: user.role };
+    // const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+    const jwtToken = this.generateToken(user);
 
     return { token: jwtToken, user };
   }
 
   async signIn({ email, password }): Promise<{ token: string; user: User }> {
-    const jwtSecret = process.env.JWT_SECRET as string;
+    // const jwtSecret = process.env.JWT_SECRET as string;
     const user = await this.userModel.findOne({ email: email });
 
     if (!user) {
@@ -80,8 +93,9 @@ export class AuthService {
       if (!isPasswordValid) {
         throw new HttpException('wrong password', HttpStatus.UNAUTHORIZED);
       }
-      const userInfo = { userId: user._id, role: user.role };
-      const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+      // const userInfo = { userId: user._id, role: user.role };
+      // const jwtToken = jwt.sign(userInfo, jwtSecret, { expiresIn: '1h' });
+      const jwtToken = this.generateToken(user);
 
       return { token: jwtToken, user };
     }

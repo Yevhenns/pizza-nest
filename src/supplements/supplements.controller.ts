@@ -13,7 +13,7 @@ import { SupplementsService } from './supplements.service';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateSupplementDto } from './dto/createSupplement.dto';
 import { UpdateSupplementDto } from './dto/updateSupplement.dto';
-import { JwtAuthGuard } from 'src/app/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('supplements')
 export class SupplementsController {

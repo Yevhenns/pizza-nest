@@ -16,7 +16,7 @@ import {
   CreateProductListDto,
 } from './dto/createProduct.dto';
 import { UpdateProductDto } from './dto/updateProduct.dto';
-import { JwtAuthGuard } from 'src/app/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('products')
 export class ProductController {
